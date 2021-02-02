@@ -1,0 +1,24 @@
+1/23: Made classes and files to organize
+
+1/24: Thinking of making this game in Kivy? Pygame seems limited but im not too sure
+
+1/26: Made the final decision of making this game in Ursina, a modified version of Panda3d.
+Finally made a github. Using Hotline Miami as a reference for the player animations right now.
+
+Update: Got an artist friend welcome to the party you are now in charge of the art
+
+1/27: Working on getting the player sprite to face the mouse at all times.
+
+Update: Testing out vectors and reading on trig to get the feature to work.
+
+Update: Got it to work
+
+1/28: Starting to work on firing weapons and sorting things out with classes.
+
+1/30: Working on getting weapons to shoot
+
+2/2: MAJOR:
+I AM MOVING THIS PROJECT TO UNITY
+I AM STARTING FRESH
+
+
