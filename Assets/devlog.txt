@@ -34,4 +34,7 @@ I AM STARTING FRESH
 Working on adding a dash mechanic
 
 2/4:
-Working on the tempo mechanic, basically making this a rhythm shooter game thingy
+Working on the tempo mechanic, basically making this a rhythm shooter game thingy (see bullets per minute)
+
+Update:
+Starting work on the cursor

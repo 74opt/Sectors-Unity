@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 public class TempoScript : MonoBehaviour {
-    float tempo = 120;
+    public static float tempo = 120;
     float frequency;
     public static bool tempoActive4;
     public static bool tempoActive2;
