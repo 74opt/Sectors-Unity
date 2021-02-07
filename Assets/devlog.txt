@@ -38,3 +38,9 @@ Working on the tempo mechanic, basically making this a rhythm shooter game thing
 
 Update:
 Starting work on the cursor
+
+2/5:
+Got the cursor and tempo working, now i need to get actions to sync with the tempo
+
+2/6:
+Working on making the player face the cursor, still trying to get actions to sync with tempo

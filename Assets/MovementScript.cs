@@ -5,12 +5,13 @@ using UnityEngine;
 public class MovementScript : MonoBehaviour {
     // Variables needed for the class
     Rigidbody2D body;
-
+    public Animator playerAnimator;
+    Vector3 mousePos;
     float horizontal;
     float vertical;
     float playerSpeed = 7.0f;
     float dashForce;
-    public static bool activeDash = true;
+    bool activeDash = true;
 
     // Start is called before the first frame update
     void Start() {
@@ -18,13 +19,23 @@ public class MovementScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() { // Retrieves inputs
+    void Update() {
         horizontal = Input.GetAxis("Horizontal");  // TODO: Change movement system to use AddForce rather than changing velocity
         vertical = Input.GetAxis("Vertical");
-      
-        if (Input.GetKey(KeyCode.LeftShift) & activeDash & TempoScript.tempoActive4) {
+
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  // Makes player face mouse
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
+
+
+        if (Input.GetKey(KeyCode.LeftShift) && activeDash && TempoScript.tempoActive2) {
+            playerAnimator.SetBool("isDash", true);
             dashForce = 5000.0f;
             activeDash = false;
+        }
+
+        if (!activeDash) {
+            
         }
     }
 

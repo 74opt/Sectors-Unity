@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 public class TempoScript : MonoBehaviour {
-    public static float tempo = 120;
+    public static float tempo = 103;
     float frequency;
     public static bool tempoActive4;
     public static bool tempoActive2;
@@ -46,10 +46,10 @@ public class TempoScript : MonoBehaviour {
         InvokeRepeating("TrueHalf", 0.0f, frequency * 2);
         InvokeRepeating("TrueWhole", 0.0f, frequency * 4);
 
-        InvokeRepeating("FalseQuarter", 0.0f, frequency + .0167f);
-        InvokeRepeating("FalseHalf", 0.0f, frequency * 2 + .0167f);
-        InvokeRepeating("FalseWhole", 0.0f, frequency * 4 + .0167f);
+        InvokeRepeating("FalseQuarter", 0.3f, frequency);
+        InvokeRepeating("FalseHalf", 0.3f, frequency * 2);
+        InvokeRepeating("FalseWhole", 0.3f, frequency * 4);
 
-        Debug.Log(Convert.ToString(tempoActive1) + Convert.ToString(tempoActive2) + Convert.ToString(tempoActive4));
+        //Debug.Log(Convert.ToString(tempoActive1) + Convert.ToString(tempoActive2) + Convert.ToString(tempoActive4));
     }
 }
