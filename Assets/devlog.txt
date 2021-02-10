@@ -44,3 +44,9 @@ Got the cursor and tempo working, now i need to get actions to sync with the tem
 
 2/6:
 Working on making the player face the cursor, still trying to get actions to sync with tempo
+
+2/7:
+I think syncing is mostly good now, I wanna work on the actions now, mainly dashing
+
+2/8:
+Worked on the dashing, but not done.

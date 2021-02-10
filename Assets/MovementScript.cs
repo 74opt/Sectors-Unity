@@ -9,44 +9,81 @@ public class MovementScript : MonoBehaviour {
     Vector3 mousePos;
     float horizontal;
     float vertical;
-    float playerSpeed = 7.0f;
-    float dashForce;
-    bool activeDash = true;
+    float saveDashHorizontal;
+    float saveDashVertical;
+    const float playerSpeed = 5.0f;
+    //private float dashForce; // might remove in favor of dashSpeed
+    float dashTimer;
+    const float dashTimeConst = 0.2f;
+    const float dashSpeed = 20.0f;
+    float dashRechargeTimer;
+    const float dashRechargeTimeConst = 2.3f;
+    bool playerDashing;
+    //Vector2 dashDirection;  // might remove
+    //bool activeDash = true;  // might remove
 
     // Start is called before the first frame update
     void Start() {
         body = GetComponent<Rigidbody2D>();
+        playerDashing = false;
+        dashTimer = dashTimeConst;
+        dashRechargeTimer = dashRechargeTimeConst;
     }
 
     // Update is called once per frame
     void Update() {
-        horizontal = Input.GetAxis("Horizontal");  // TODO: Change movement system to use AddForce rather than changing velocity
+        horizontal = Input.GetAxis("Horizontal");  // TODO: Change movement system to use AddForce rather than changing velocity? might not.
         vertical = Input.GetAxis("Vertical");
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  // Makes player face mouse
+        // Makes player face mouse
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
 
+        // sets up the dash and activates it 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && /*TempoScript.tempoActive2 &&*/ dashTimer > 0 && !playerDashing) {
+            saveDashHorizontal = horizontal;
+            saveDashVertical = vertical;
+            if (horizontal == 0 && vertical == 0) {
+                saveDashVertical = 1;
+            }
 
-        if (Input.GetKey(KeyCode.LeftShift) && activeDash && TempoScript.tempoActive2) {
+            Debug.Log("Dashing");
+            playerDashing = true;
             playerAnimator.SetBool("isDash", true);
-            dashForce = 5000.0f;
-            activeDash = false;
+            //playerAnimator.SetBool("isDash", false);
+        }
+        
+        // recharge timer for when the dash is used
+        if (dashTimer <= 0) {
+            playerDashing = false;
+            playerAnimator.SetBool("isDash", false);
+            if (dashRechargeTimer > 0) {
+                dashRechargeTimer -= Time.deltaTime;
+            } else {
+                dashRechargeTimer = dashRechargeTimeConst;
+                dashTimer = dashTimeConst;
+                Debug.Log("Recharged");
+            }
         }
 
-        if (!activeDash) {
-            
+        // timer for the interval that the player is dashing
+        if (playerDashing) {
+            if (dashTimer > 0) {
+                dashTimer -= Time.deltaTime;
+            //} else {
+            //    playerDashing = false;
+            }
         }
-    }
+        //Debug.Log(horizontal + " " + vertical);
+    }   
 
     // FixedUpdate can run once, zero, or several times per frame, depending on how many physics frames per second are set in the time settings, and how fast/slow the framerate is.
     void FixedUpdate() {
-        body.velocity = new Vector2(horizontal * playerSpeed, vertical * playerSpeed); // Moves player
-
-        if (dashForce != 0) {
-            body.AddForce(transform.right * dashForce);
-            dashForce = 0;
+        if (playerDashing && dashTimer >= 0.0f) {
+            body.velocity = new Vector2(saveDashHorizontal * dashSpeed, saveDashVertical * playerSpeed);  // dash move
+        } else {
+            body.velocity = new Vector2(horizontal * playerSpeed, vertical * playerSpeed);  // basic movement
         }
     }
-
 }

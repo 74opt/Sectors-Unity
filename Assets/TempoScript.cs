@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 public class TempoScript : MonoBehaviour {
-    public static float tempo = 103;
+    public static float tempo = 120;
     float frequency;
     public static bool tempoActive4;
     public static bool tempoActive2;
@@ -12,8 +12,16 @@ public class TempoScript : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        frequency = (float) Math.Pow(tempo/60/.25, -1);
+        frequency = (float) Math.Pow(tempo / 60 / .25, -1);
         Debug.Log(frequency);
+
+        InvokeRepeating("TrueQuarter", 0.0f, frequency);
+        InvokeRepeating("TrueHalf", 0.0f, frequency * 2);
+        InvokeRepeating("TrueWhole", 0.0f, frequency * 4);
+
+        InvokeRepeating("FalseQuarter", 0.03f, frequency);
+        InvokeRepeating("FalseHalf", 0.03f, frequency * 2);
+        InvokeRepeating("FalseWhole", 0.03f, frequency * 4);
     }
 
     void TrueQuarter() {
@@ -42,14 +50,6 @@ public class TempoScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        InvokeRepeating("TrueQuarter", 0.0f, frequency);
-        InvokeRepeating("TrueHalf", 0.0f, frequency * 2);
-        InvokeRepeating("TrueWhole", 0.0f, frequency * 4);
-
-        InvokeRepeating("FalseQuarter", 0.3f, frequency);
-        InvokeRepeating("FalseHalf", 0.3f, frequency * 2);
-        InvokeRepeating("FalseWhole", 0.3f, frequency * 4);
-
         //Debug.Log(Convert.ToString(tempoActive1) + Convert.ToString(tempoActive2) + Convert.ToString(tempoActive4));
     }
 }
