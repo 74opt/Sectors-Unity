@@ -16,6 +16,6 @@ public class CursorScript : MonoBehaviour {
     void Update() {
         mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);  //Camere.main.ScreenToWorldPoint turns a sprite's screen coordinates into the ingame world's coord1inates
-        transform.position = Vector2.Lerp(transform.position, mousePos, 999999);
+        transform.position = Vector2.Lerp(transform.position, mousePos, 1);
     }
 }
