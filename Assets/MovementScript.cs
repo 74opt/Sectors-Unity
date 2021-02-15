@@ -11,16 +11,13 @@ public class MovementScript : MonoBehaviour {
     float vertical;
     float saveDashHorizontal;
     float saveDashVertical;
-    const float playerSpeed = 5.0f;
-    //private float dashForce; // might remove in favor of dashSpeed
+    const float playerSpeed = 3.0f;
     float dashTimer;
     const float dashTimeConst = 0.2f;
-    const float dashSpeed = 20.0f;
+    const float dashSpeed = 13.0f;
     float dashRechargeTimer;
-    const float dashRechargeTimeConst = 2.3f;
+    const float dashRechargeTimeConst = 2.7f;
     bool playerDashing;
-    //Vector2 dashDirection;  // might remove
-    //bool activeDash = true;  // might remove
 
     // Start is called before the first frame update
     void Start() {
@@ -32,7 +29,7 @@ public class MovementScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        horizontal = Input.GetAxis("Horizontal");  // TODO: Change movement system to use AddForce rather than changing velocity? might not.
+        horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
         // Makes player face mouse
@@ -45,7 +42,7 @@ public class MovementScript : MonoBehaviour {
             saveDashHorizontal = horizontal;
             saveDashVertical = vertical;
             if (horizontal == 0 && vertical == 0) {
-                saveDashVertical = 1;
+                saveDashHorizontal = 1;
             }
 
             Debug.Log("Dashing");
@@ -81,7 +78,7 @@ public class MovementScript : MonoBehaviour {
     // FixedUpdate can run once, zero, or several times per frame, depending on how many physics frames per second are set in the time settings, and how fast/slow the framerate is.
     void FixedUpdate() {
         if (playerDashing && dashTimer >= 0.0f) {
-            body.velocity = new Vector2(saveDashHorizontal * dashSpeed, saveDashVertical * playerSpeed);  // dash move
+            body.velocity = new Vector2(saveDashHorizontal * dashSpeed, saveDashVertical * dashSpeed);  // dash move
         } else {
             body.velocity = new Vector2(horizontal * playerSpeed, vertical * playerSpeed);  // basic movement
         }
