@@ -465,7 +465,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ecb04e3570158174f81fcad050a28339, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -585,6 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: -7319381571795877278, guid: b1f10f532322eeb43b0ee07a2a4933e2,
     type: 3}
+  aim: {fileID: 1282186895}
 --- !u!1 &1987427344
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Room1Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189843830577974850, guid: 0ea05baafc624a9469a0011636058efa,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189843830577974851, guid: 0ea05baafc624a9469a0011636058efa,
         type: 3}
