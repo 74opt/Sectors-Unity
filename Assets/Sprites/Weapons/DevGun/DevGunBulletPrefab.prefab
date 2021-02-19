@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6801328227593929401}
   - component: {fileID: -7319381571795877278}
   - component: {fileID: 1329738703242099631}
+  - component: {fileID: 7955678362694624434}
   m_Layer: 0
   m_Name: DevGunBulletPrefab
   m_TagString: Untagged
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06, y: 0.06}
   m_EdgeRadius: 0
+--- !u!114 &7955678362694624434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611365608939385642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122b2d008065450489c30f0833a94ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
