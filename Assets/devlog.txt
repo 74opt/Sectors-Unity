@@ -62,3 +62,9 @@ Alright here's a little idea: randomly generated areas to survive in, probably a
 
 2/15:
 Went back to weapons and shooting, was able to get bullets to spawn on mouse click.
+
+2/18:
+Got bullets to move
+
+2/19:
+Gonna start on getting bullets to disappear on collision

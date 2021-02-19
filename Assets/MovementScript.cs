@@ -11,12 +11,12 @@ public class MovementScript : MonoBehaviour {
     float vertical;
     float saveDashHorizontal;
     float saveDashVertical;
-    const float playerSpeed = 3.0f;
+    public const float playerSpeed = 3.0f;
     float dashTimer;
-    const float dashTimeConst = 0.2f;
-    const float dashSpeed = 13.0f;
+    public const float dashTimeConst = 0.2f;
+    public const float dashSpeed = 13.0f;
     float dashRechargeTimer;
-    const float dashRechargeTimeConst = 2.7f;
+    public const float dashRechargeTimeConst = 2.7f;
     bool playerDashing;
 
     // Start is called before the first frame update
