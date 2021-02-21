@@ -5,14 +5,22 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour {
     Rigidbody2D body;
     public Transform playerTransform;
-    const float enemySpeed = 1.7f;
+    public Transform enemyHealthBar;
+    const float enemySpeed = 1.5f;
+    float enemyHealth;
+    const float enemyHealthConst = 7.0f;
 
     void Start() {
-        
+        enemyHealth = 7.0f;
+        playerTransform = GameObject.Find("Player").transform;
     }
 
     void Update() {
-        
+        if (enemyHealth <= 0) {
+            Destroy(gameObject);
+        }
+
+        enemyHealthBar.localScale = new Vector3(enemyHealth/enemyHealthConst, 1, 1);
     }
 
     void FixedUpdate() {
@@ -21,5 +29,11 @@ public class EnemyScript : MonoBehaviour {
 
         // moves towards player
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, enemySpeed * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.tag == "Player Projectile") {
+            enemyHealth -= ShootingScript.damage;
+        }
     }
 }

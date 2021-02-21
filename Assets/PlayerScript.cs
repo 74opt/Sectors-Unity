@@ -19,14 +19,17 @@ public class PlayerScript : MonoBehaviour {
     const float dashRechargeTimeConst = 2.7f;
     bool playerDashing;
     float playerHealth;
+    const float gracePeriodTimerConst = .7f;
+    float gracePeriodTimer;
 
     // Start is called before the first frame update
     void Start() {
         body = GetComponent<Rigidbody2D>();
         playerDashing = false;
+        playerHealth = 20.0f;
         dashTimer = dashTimeConst;
         dashRechargeTimer = dashRechargeTimeConst;
-        
+        gracePeriodTimer = gracePeriodTimerConst;
     }
 
     // Update is called once per frame

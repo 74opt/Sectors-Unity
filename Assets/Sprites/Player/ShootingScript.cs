@@ -13,11 +13,13 @@ public class ShootingScript : MonoBehaviour {
     public float bulletTimer;
     public Animator animator;
     public float randomSpread;
+    public static float damage;
     //float animatorTimerConst = .1f;
     //float animatorTimer;
 
     void Start() {
         bulletTimer = bulletTimerConst;
+        damage = 1.0f;
         //animatorTimer = animatorTimerConst;
         //gunInstance = Instantiate(gun);
     }
