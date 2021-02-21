@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletCollisionScript : MonoBehaviour {
+
     private void OnCollisionEnter2D(Collision2D collision) {
         Destroy(gameObject);
     }

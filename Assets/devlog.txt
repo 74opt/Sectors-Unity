@@ -74,3 +74,5 @@ Finished collision and little gun animation, working on enemies now
 
 2/21:
 Working on enemies
+
+Update: Now working on health bars
