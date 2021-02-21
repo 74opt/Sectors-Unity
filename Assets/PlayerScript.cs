@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour {
     // Variables needed for the class
     Rigidbody2D body;
     public Animator playerAnimator;
@@ -11,13 +11,14 @@ public class MovementScript : MonoBehaviour {
     float vertical;
     float saveDashHorizontal;
     float saveDashVertical;
-    public const float playerSpeed = 3.0f;
+    const float playerSpeed = 3.0f;
     float dashTimer;
-    public const float dashTimeConst = 0.2f;
-    public const float dashSpeed = 13.0f;
+    const float dashTimeConst = 0.2f;
+    const float dashSpeed = 13.0f;
     float dashRechargeTimer;
-    public const float dashRechargeTimeConst = 2.7f;
+    const float dashRechargeTimeConst = 2.7f;
     bool playerDashing;
+    float playerHealth;
 
     // Start is called before the first frame update
     void Start() {
@@ -25,6 +26,7 @@ public class MovementScript : MonoBehaviour {
         playerDashing = false;
         dashTimer = dashTimeConst;
         dashRechargeTimer = dashRechargeTimeConst;
+        
     }
 
     // Update is called once per frame
@@ -32,10 +34,8 @@ public class MovementScript : MonoBehaviour {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        // Makes player face mouse
+        // sets up mouse position for player rotations
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
 
         // sets up the dash and activates it 
         if (Input.GetKeyDown(KeyCode.LeftShift) && /*TempoScript.tempoActive2 &&*/ dashTimer > 0 && !playerDashing) {
@@ -82,5 +82,9 @@ public class MovementScript : MonoBehaviour {
         } else {
             body.velocity = new Vector2(horizontal * playerSpeed, vertical * playerSpeed);  // basic movement
         }
+
+        // rotates towards mouse 
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
     }
 }
