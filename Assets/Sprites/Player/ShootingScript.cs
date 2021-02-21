@@ -8,18 +8,29 @@ public class ShootingScript : MonoBehaviour {
     public const float bulletSpeed = 15.0f;
     public Transform aim;
     Rigidbody2D projectileInstance;
+    //SpriteRenderer gunInstance;
     public const float bulletTimerConst = 1.0f;
     public float bulletTimer;
+    public Animator animator;
+    public float randomSpread;
+    //float animatorTimerConst = .1f;
+    //float animatorTimer;
 
     void Start() {
         bulletTimer = bulletTimerConst;
+        //animatorTimer = animatorTimerConst;
+        //gunInstance = Instantiate(gun);
     }
 
     // Update is called once per frame
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            projectileInstance = Instantiate(projectile, spawner.position, transform.rotation);
+            randomSpread = Random.Range(-.1f, .1f);
+
+            projectileInstance = Instantiate(projectile, spawner.position + new Vector3(randomSpread, 0, 0), transform.rotation);
             projectileInstance.AddForce(aim.right * bulletSpeed, ForceMode2D.Impulse);
+            animator.SetTrigger("OnShoot");
+            //animator.ResetTrigger("OnShoot");
         }
     }
 }
