@@ -68,3 +68,9 @@ Got bullets to move
 
 2/19:
 Gonna start on getting bullets to disappear on collision
+
+2/20:
+Finished collision and little gun animation, working on enemies now
+
+2/21:
+Working on enemies
