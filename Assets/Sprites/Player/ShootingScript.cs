@@ -19,14 +19,14 @@ public class ShootingScript : MonoBehaviour {
 
     void Start() {
         bulletTimer = bulletTimerConst;
-        damage = 1.0f;
+        damage = 3.0f;
         //animatorTimer = animatorTimerConst;
         //gunInstance = Instantiate(gun);
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) /*&& TempoScript.tempoActive4*/) {
             randomSpread = Random.Range(-.1f, .1f);
 
             projectileInstance = Instantiate(projectile, spawner.position + new Vector3(randomSpread, 0, 0), transform.rotation);
