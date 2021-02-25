@@ -586,6 +586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 1282186898}
+  healthBar: {fileID: 4417189393452528514, guid: 5892fe4a1719f7146964c07e86ebd7fd,
+    type: 3}
 --- !u!95 &1282186898
 Animator:
   serializedVersion: 3
