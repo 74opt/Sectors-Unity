@@ -75,4 +75,14 @@ Finished collision and little gun animation, working on enemies now
 2/21:
 Working on enemies
 
-Update: Now working on health bars
+Update: 
+Now working on health bars
+
+Update 2:
+Enemy health bars and bullet damage are good, and i got spawners working
+
+2/24:
+Worked a little on player health
+
+2/25:
+Got death and grace periods for player working, making function for timers
