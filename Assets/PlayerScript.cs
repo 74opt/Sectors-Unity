@@ -19,17 +19,28 @@ public class PlayerScript : MonoBehaviour {
     const float dashRechargeTimeConst = 2.7f;
     bool playerDashing;
     float playerHealth;
+    const float playerHealthConst = 20.0f;
     const float gracePeriodTimerConst = .7f;
     float gracePeriodTimer;
+    bool gracePeriodBool;
+    public Transform healthBar;
+    public static bool playerDead;
+    GameObject barScale;
 
     // Start is called before the first frame update
     void Start() {
         body = GetComponent<Rigidbody2D>();
         playerDashing = false;
-        playerHealth = 20.0f;
+        playerHealth = playerHealthConst;
         dashTimer = dashTimeConst;
         dashRechargeTimer = dashRechargeTimeConst;
         gracePeriodTimer = gracePeriodTimerConst;
+        Transform playerHealthBar = Instantiate(healthBar, transform.position + new Vector3(.1f, .33f, 0), transform.rotation);
+        playerHealthBar.transform.parent = gameObject.transform;
+        barScale = GameObject.Find("HealthBar(Clone)/Bar");
+        gracePeriodBool = false;
+        playerHealthBar.transform.localScale = new Vector3(75, 10, 1);
+        playerDead = false;
     }
 
     // Update is called once per frame
@@ -44,6 +55,18 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftShift) && /*TempoScript.tempoActive2 &&*/ dashTimer > 0 && !playerDashing) {
             saveDashHorizontal = horizontal;
             saveDashVertical = vertical;
+            //if (horizontal > 0) {
+            //    saveDashHorizontal = 1;
+            //} else if (horizontal < 0) {
+            //    saveDashHorizontal = -1;
+            //}
+
+            //if (vertical > 0) {
+            //    saveDashVertical = 1;
+            //} else if (vertical < 0) {
+            //    saveDashVertical = -1;
+            //}
+
             if (horizontal == 0 && vertical == 0) {
                 saveDashHorizontal = 1;
             }
@@ -53,7 +76,7 @@ public class PlayerScript : MonoBehaviour {
             playerAnimator.SetBool("isDash", true);
             //playerAnimator.SetBool("isDash", false);
         }
-        
+
         // recharge timer for when the dash is used
         if (dashTimer <= 0) {
             playerDashing = false;
@@ -71,12 +94,33 @@ public class PlayerScript : MonoBehaviour {
         if (playerDashing) {
             if (dashTimer > 0) {
                 dashTimer -= Time.deltaTime;
-            //} else {
-            //    playerDashing = false;
             }
         }
-        //Debug.Log(horizontal + " " + vertical);
+
+        barScale.transform.localScale = new Vector3(playerHealth/playerHealthConst, 1, 1);
+
+        if (gracePeriodBool) {
+            if (gracePeriodTimer > 0) {
+                gracePeriodTimer -= Time.deltaTime;
+            } else {
+                gracePeriodTimer = gracePeriodTimerConst;
+                gracePeriodBool = false;
+            }
+        }
+
+        //BoolTimer(gracePeriodTimer, gracePeriodTimerConst, gracePeriodBool);
     }   
+
+    //void BoolTimer(float timer, float timerConst, bool boolean) {
+    //    if (boolean) {
+    //        if (timer > 0) {
+    //            timer -= Time.deltaTime;
+    //        } else {
+    //            timer = timerConst;
+    //            boolean = false;
+    //        }
+    //    }
+    //}
 
     // FixedUpdate can run once, zero, or several times per frame, depending on how many physics frames per second are set in the time settings, and how fast/slow the framerate is.
     void FixedUpdate() {
@@ -89,5 +133,19 @@ public class PlayerScript : MonoBehaviour {
         // rotates towards mouse 
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
+    }
+
+    void OnCollisionStay2D(Collision2D collision) {
+        if (collision.collider.tag == "Enemy") {
+            if (!gracePeriodBool) {
+                playerHealth -= 1f;
+                gracePeriodBool = true;
+                Debug.Log($"Damaged {playerHealth}");
+                if (playerHealth <= 0) {
+                    Destroy(gameObject);
+                    playerDead = true;
+                }
+            }
+        }
     }
 }
