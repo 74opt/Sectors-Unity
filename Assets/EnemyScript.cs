@@ -21,14 +21,20 @@ public class EnemyScript : MonoBehaviour {
         }
 
         enemyHealthBar.localScale = new Vector3(enemyHealth/enemyHealthConst, 1, 1);
+
+        if (PlayerScript.playerDead) {
+            playerTransform = null;
+        }
     }
 
     void FixedUpdate() {
-        // looks towards player
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, playerTransform.position - transform.position);
+        if (!PlayerScript.playerDead) {
+            // looks towards player
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, playerTransform.position - transform.position);
 
-        // moves towards player
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, enemySpeed * Time.deltaTime);
+            // moves towards player
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, enemySpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
