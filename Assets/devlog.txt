@@ -86,3 +86,21 @@ Worked a little on player health
 
 2/25:
 Got death and grace periods for player working, making function for timers
+
+2/26:
+Made a method for the health bar scaling, wanna work on tempo.
+
+2/27:
+Tempo is fixed, now I just need to get some math right so the code works at any tempo.
+
+3/2:
+So, tempo is gonna be worked on later, it's really hard to sync. Now im working on pickups like health
+
+3/3:
+Mind changed again, wanna work on having different enemies
+
+3/4 + 3/5:
+Working on the different enemies and trying to get them to spawn
+
+3/6:
+Different enemies working, now i just need to get their sprites to change 
