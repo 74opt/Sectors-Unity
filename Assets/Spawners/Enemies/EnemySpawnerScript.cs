@@ -6,8 +6,8 @@ public class EnemySpawnerScript : MonoBehaviour {
     public Transform spawner1;
     public Transform spawner2;
     public Transform spawner3;
-    public Rigidbody2D enemy;
-    Rigidbody2D enemyInstance;
+    public GameObject enemy;
+    GameObject enemyInstance;
     //static int randomIndex;
     List<Transform> spawnerList;
 
@@ -15,8 +15,8 @@ public class EnemySpawnerScript : MonoBehaviour {
     void Start() {
         spawnerList = new List<Transform>{spawner1, spawner2, spawner3};
         //Debug.Log($"List Length: {spawnerList.Count}");
-        for (int i = 0; i <= 2; i++) {
-            InvokeRepeating("Spawn", 0.0f, Random.Range(5f, 8f));
+        for (int i = 0; i < 4; i++) {
+            InvokeRepeating("Spawn", Random.Range(1.2f, 3.3f), Random.Range(5f, 8f));
         }
     }
 
