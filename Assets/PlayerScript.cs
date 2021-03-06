@@ -37,7 +37,6 @@ public class PlayerScript : MonoBehaviour {
         gracePeriodTimer = gracePeriodTimerConst;
         Transform playerHealthBar = Instantiate(healthBar, transform.position + new Vector3(.1f, .33f, 0), transform.rotation);
         playerHealthBar.transform.parent = gameObject.transform;
-        barScale = GameObject.Find("HealthBar(Clone)/Bar");
         gracePeriodBool = false;
         playerHealthBar.transform.localScale = new Vector3(75, 10, 1);
         playerDead = false;
@@ -97,7 +96,7 @@ public class PlayerScript : MonoBehaviour {
             }
         }
 
-        barScale.transform.localScale = new Vector3(playerHealth/playerHealthConst, 1, 1);
+        HealthBarScript.healthScale(playerHealth, playerHealthConst, GameObject.Find("HealthBar(Clone)/Bar").transform);
 
         if (gracePeriodBool) {
             if (gracePeriodTimer > 0) {
@@ -136,9 +135,9 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void OnCollisionStay2D(Collision2D collision) {
-        if (collision.collider.tag == "Enemy") {
+        if (collision.collider.CompareTag("Enemy")) {
             if (!gracePeriodBool) {
-                playerHealth -= 1f;
+                //playerHealth -= EnemyScript.enemy.Damage;
                 gracePeriodBool = true;
                 Debug.Log($"Damaged {playerHealth}");
                 if (playerHealth <= 0) {
