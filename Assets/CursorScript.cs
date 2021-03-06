@@ -8,7 +8,7 @@ public class CursorScript : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        mouseAnimator.SetFloat("Cursor_Tempo", (TempoScript.tempo/30 * .1f) + .1f);
+        mouseAnimator.SetFloat("Cursor_Tempo", .5f/*(TempoScript.tempo/30 * .1f) + TempoScript.tempo/1200*/);
         Cursor.visible = false;
     }
 
