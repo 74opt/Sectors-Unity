@@ -8,8 +8,9 @@ public class EnemyScript : MonoBehaviour {
     public Animator animator;
     public Transform playerTransform;
     public Transform enemyHealthBar;
-    public static Sprite basic;
-    public static Sprite tank;
+    //public static Sprite basic;
+    //public static Sprite tank;
+    public static float damage;
 
     // Enemy spawers:
     List<Vector2> spawnerList;

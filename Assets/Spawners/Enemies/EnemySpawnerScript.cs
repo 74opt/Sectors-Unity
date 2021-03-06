@@ -16,7 +16,7 @@ public class EnemySpawnerScript : MonoBehaviour {
         spawnerList = new List<Transform>{spawner1, spawner2, spawner3};
         //Debug.Log($"List Length: {spawnerList.Count}");
         for (int i = 0; i < 4; i++) {
-            InvokeRepeating("Spawn", Random.Range(1.2f, 3.3f), Random.Range(5f, 8f));
+            InvokeRepeating("Spawn", Random.Range(0f, 8f), Random.Range(5f, 8f));
         }
     }
 

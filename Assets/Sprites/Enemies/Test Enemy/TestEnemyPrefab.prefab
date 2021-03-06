@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da26e82881055b042abd0463d1589d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 684353691917676403}
   playerTransform: {fileID: 0}
   enemyHealthBar: {fileID: 7338519373562038831}
   spawner1: {x: 0, y: 0}
